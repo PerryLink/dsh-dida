@@ -220,7 +220,7 @@
     "react-dom": "18.3.1",
     "vitest": "^4.1.12",
     "@deepseek-ai/dsh-working-directory": "0.2.1-rc.2",
-    "tsdown": "^0.23.1",
+    "tsdown": "^0.23.4",
     "typescript": "^5.9.3"
   },
   "scripts": {
