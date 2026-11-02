@@ -202,7 +202,7 @@
     "@deepseek-ai/dsh-client-ui-conversation": "0.2.1-rc.2",
     "@deepseek-ai/dsh-client-ui-primitives": "0.2.1-rc.2",
     "@deepseek-ai/dsh-client-ui-plugin-manager": "0.2.1-rc.2",
-    "@deepseek-ai/dsh-client-ui-settings": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-client-ui-settings": "0.2.1-rc.5",
     "@deepseek-ai/dsh-client-ui-slots": "0.2.1-rc.2",
     "@deepseek-ai/dsh-settings": "0.2.1-rc.2",
     "@deepseek-ai/dsh-system-prompt": "0.2.1-rc.2",
