@@ -1,0 +1,310 @@
+# dsh-dida
+
+> **Renamed from [`@perrylink/dsh-ticktick`](https://www.npmjs.com/package/@perrylink/dsh-ticktick).** The old scoped package is deprecated; install **`dsh-dida`**.
+
+> Release stamp: `0.1.13` (2026-10-04).
+
+> **Nombre del paquete.** Este proyecto se publica en npm como **`dsh-dida`**. El nombre simple `dsh-dida` pertenece a otro proyecto no relacionado: instalarlo no instala este plugin.
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
+[![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
+[![dsh-doctor](https://raw.githubusercontent.com/PerryLink/dsh-plugin-doctor/main/badges/PerryLink__dsh-dida.svg)](https://github.com/PerryLink/dsh-plugin-doctor#verified-徽章)
+[![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-dida)
+[![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-dida/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-dida/actions)
+[![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-dida?label=version)](https://github.com/PerryLink/dsh-dida/releases)
+[![npm version](https://img.shields.io/npm/v/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm downloads](https://img.shields.io/npm/dm/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-dida?metric=downloads&lang=es)](https://dshfind.com/es/plugins/PerryLink/dsh-dida?ref=badge)
+
+[English](README.md) | [简体中文](README-zh.md) | **Español** | [Português](README-pt.md) | [हिन्दी](README-hi.md)
+
+```sh
+dsh plugin --profile <name> add dsh-dida
+```
+
+
+Puente de tareas de TickTick / Dida365 (滴答清单) para [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): un panel de tareas en la cabecera de sesión (filtro por lista, alta rápida, completar, borrar, fechas límite, reordenar arrastrando), once herramientas del agente, una página de configuración en la página Plugins y un servicio Remote tipado — todo sobre el endpoint MCP oficial de TickTick.
+
+## Instalación
+
+```sh
+dsh plugin --profile web add github:PerryLink/dsh-dida
+```
+
+```sh
+dsh plugin --profile web add dsh-dida   # npm (incluye lib/)
+dsh plugin --profile web add "github:PerryLink/dsh-dida#<sha>"   # git
+dsh plugin --profile web add link:/path/to/dsh-dida              # local
+```
+
+Reinicia `dsh web` (los plugins de bundle se activan al reiniciar). La acción `ticktick` aparece en la cabecera de sesión; su página de configuración se abre desde el control **Configure** de la fila TickTick en la página Plugins.
+
+## What is dsh-dida?
+
+Puente de tareas de TickTick / Dida365 (滴答清单) para [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): un panel de tareas en la cabecera de sesión (filtro por lista, alta rápida, completar, borrar, fechas límite, reordenar arrastrando), once herramientas del agente, una página de configuración en la página Plugins y un servicio Remote tipado — todo sobre el endpoint MCP oficial de TickTick.
+
+![Diagrama de flujo de dsh-dida: instalar → abrir panel → actuar.](docs/assets/dsh-dida-flow.svg)
+
+*Resumen del flujo: instalar → abrir panel → actuar. Los ejemplos siguientes usan la superficie de comandos real.*
+
+
+*La misma ejecución, animada.*
+
+## Compatibilidad
+
+| Superficie | Estado |
+|---|---|
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (tag de GitHub). Línea npm fijada en `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.0 || >=0.1.5-alpha.1 <0.2.0 || >=0.1.6-0 <0.2.0 || >=0.1.7-0 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0`). Verificado contra el checkout dsh-v0.2.1-alpha.1 (cadena completa de gates + smoke de instalación de perfil). |
+| Node | `^22.19.0 \|\| >=24.0.0` |
+
+## Características
+
+- **Panel en la cabecera de sesión** — la acción `ticktick` de la cabecera abre una ventana emergente: filtrar por lista (Todas + cada lista), alternar vistas pendientes/completadas, búsqueda de texto completo, añadir tareas con fecha de vencimiento opcional, completar, borrar (con confirmación), fijar/limpiar fechas límite con etiquetas vencida/hoy/mañana y reordenar arrastrando (vistas pendientes de una sola lista). Un punto de estado muestra la conexión; sin token configurado, el panel ofrece la configuración del token en un solo paso.
+- **Once herramientas del agente** — `ticktick_status`, `ticktick_lists`, `ticktick_tasks`, `ticktick_add`, `ticktick_complete`, `ticktick_delete`, `ticktick_due`, `ticktick_reorder`, `ticktick_completed`, `ticktick_search`, `ticktick_batch_add`; Code Mode obtiene `await tools.ticktick_*(args)` gratis.
+- **Página de configuración** — página Plugins → la fila TickTick → **Configure**: token API (secreto), archivo de token, endpoint MCP con ajustes CN/Internacional, ids de tareas protegidos (los cuatro se aplican en vivo, sin reinicio), un botón Probar conexión y un botón Limpiar credenciales.
+- **Relectura del token en vivo** — el token Bearer se relee en cada petición (secreto de la tarjeta > archivo, por defecto `$DSH_HOME/.ticktick-token`); un 401 reinicia el cliente para que un token rotado se active sin reiniciar.
+- **Contorneos medidos** — el MCP de TickTick rechaza `update_task` para tareas dentro de proyectos normales ("Expecting value: line 1 column 1"); el puente reintenta con mover-a-bandeja → actualizar → devolver. Las listas que fallan la validación del servidor (datos históricos `repeatFrom: ''`) se omiten y se notifican como advertencias, nunca se descartan en silencio.
+- **Ids protegidos** — las operaciones de mutación rechazan tareas de la lista protegida antes de cualquier llamada.
+- **Sincronización multidispositivo** — cada escritura va a la nube de TickTick, así que móvil, escritorio y web la ven; cada lectura trae el estado actual.
+
+### Ejemplos
+
+Son los puntos de entrada reales; instala y llama a uno.
+
+#### Ejemplo detallado
+
+**Comando**
+
+~~~sh
+ticktick_lists
+~~~
+
+**Entrada**
+
+~~~json
+{}
+~~~
+
+**Salida**
+
+~~~text
+Inbox (inbox)
+Work (hex1)
+~~~
+
+*Observado en `plugins/dsh-dida/src/tools.ts:107-109 (renderer); fixture/assertion at plugins/dsh-dida/tests/service.spec.ts:40-46,103-108`*
+
+#### Rama de fallo
+
+**Entrada**
+
+~~~text
+{"id":"t-guarded","projectId":"hex1"} (protectedTaskIds: ["t-guarded"])
+~~~
+
+**Salida**
+
+~~~text
+Error: task t-guarded is protected
+~~~
+
+*Observado en `plugins/dsh-dida/src/service.ts:344-349; plugins/dsh-dida/tests/service.spec.ts:158-163`*
+
+#### Ejemplos breves
+
+- `ticktick_tasks`
+- `ticktick_add`
+
+## Configuración
+
+1. Consigue un API 口令 (un token con prefijo `dp_`) desde la web de Dida365/TickTick: Perfil → Ajustes → Cuenta y seguridad → API 口令.
+2. Elige una de las tres fuentes de token (orden de prioridad): el campo secreto de la página de configuración de TickTick (página Plugins → la fila TickTick → Configure), la variable de entorno `DIDA365_TOKEN`, o un archivo de token (por defecto `$DSH_HOME/.ticktick-token`, una línea). Escribir el archivo activa el puente sin ningún cambio de configuración.
+3. Usa el botón **Probar conexión** de la tarjeta para verificar el token y **Limpiar credenciales** para borrarlo.
+
+| Clave | Por defecto | Significado |
+|---|---|---|
+| `tokenFile` | `''` | Archivo de token; vacío = `$DSH_HOME/.ticktick-token` |
+| `mcpUrl` | `https://mcp.dida365.com` | Endpoint MCP de TickTick (el internacional no está verificado — ver más abajo) |
+| `toolCallTimeoutMs` | `30000` | Plazo por tools/call en ms |
+| `protectedTaskIds` | `[]` | Ids que las mutaciones rechazan |
+| `tools.*` | `''` | Nombres MCP fijados (projects/tasks/create/complete/remove/update/move); `''` = descubrir por patrón |
+
+## Herramientas del agente
+
+| Herramienta | Propósito |
+|---|---|
+| `ticktick_status` | estado de la conexión: token configurado, cliente conectado, endpoint, último error |
+| `ticktick_lists` | todas las listas (proyectos), la Bandeja de entrada virtual incluida |
+| `ticktick_tasks` | tareas pendientes: una lista o todas agregadas, con avisos por lista |
+| `ticktick_add` | crear una tarea (lista, fecha ISO opcional) |
+| `ticktick_complete` | completar una tarea (id de tarea + id de lista) |
+| `ticktick_delete` | borrar una tarea (id de tarea + id de lista) |
+| `ticktick_due` | fijar/limpiar una fecha límite (omitir la fecha para limpiar) |
+| `ticktick_reorder` | asignar un nuevo sortOrder entero (las listas ordenan por sortOrder descendente) |
+| `ticktick_completed` | tareas completadas en una ventana (30 días por defecto), opcionalmente una lista |
+| `ticktick_search` | búsqueda de texto completo sobre tareas (la herramienta oficial de búsqueda) |
+| `ticktick_batch_add` | crear varias tareas en una llamada |
+
+## Arquitectura
+
+```
+panel del navegador ── ctx.remote.ticktick.* ──▶ TicktickService (Typert Remote)
+página de configuración ── ctx.configForms ──▶ entrada de perfil "ticktick" (Config Volatile)
+herramientas ──────── ctx.tools (ticktick_*) ─▶ el mismo servicio
+                     │
+                     ▼
+         cliente MCP HTTP streamable mínimo
+         (id de sesión, versión de protocolo, Retry-After)
+                     │
+                     ▼
+         https://mcp.dida365.com  (MCP oficial de TickTick)
+```
+
+## Limitaciones conocidas
+
+- El endpoint internacional de TickTick **no está verificado**: `mcpUrl` apunta por defecto al endpoint CN y la URL MCP internacional no ha sido probada.
+- La vista de completadas, la búsqueda y la adición por lotes usan las herramientas MCP `list_completed_tasks_by_date`, `search` y `batch_add_tasks`; sus contratos provienen del catálogo publicado (`dida365-sdk` stubs) y la **reverificación contra el endpoint real está pendiente** — ejecuta `probes/probe-queries.mjs` con un token real antes de darlos por verificados.
+- El crash medido de `update_task` y los fallos de validación de listas son comportamientos del servidor; `probes/` los reverifica contra el endpoint real antes de un release (ejecuta con `DIDA365_TOKEN` exportado).
+- La superficie `/api` que usa el panel es el gateway Typert estándar del harness; el token se guarda localmente (documento de ajustes o archivo de token) y se envía solo a los servidores de TickTick. No expongas una instancia `dsh web` a internet público.
+
+## Verificar el puente contra el endpoint real
+
+```sh
+# PowerShell
+$env:DIDA365_TOKEN='dp_...'
+node probes/probe-bootstrap.mjs      # handshake + catálogo de herramientas
+node probes/probe-crud.mjs           # ciclo crear/completar/borrar
+node probes/probe-due.mjs            # fechas límite (+ desvío con un PROJECT_ID)
+node probes/probe-reorder.mjs        # semántica de sortOrder
+node probes/probe-queries.mjs        # descubrimiento del contrato P2 de consultas
+```
+
+## Desinstalación
+
+```sh
+dsh plugin --profile web remove dsh-dida
+```
+
+Reinicia `dsh web`. Todos los registros en tiempo de ejecución (herramientas, panel, página de configuración, sección del prompt) se eliminan con el plugin. El único residuo estático es el token en el documento de ajustes del usuario — límpialo primero con el botón **Limpiar credenciales** de la página de configuración de TickTick (o elimina el archivo de token / la variable `DIDA365_TOKEN`) para desvincular por completo. Para mantener el paquete instalado pero inactivo, desactiva la fila en su lugar:
+
+```yaml
+- id: ticktick
+  disabled: true
+```
+
+### Instalar desde el mercado de DSH Desktop
+
+Todos los plugins de PerryLink pueden explorarse en el mercado integrado de DSH Desktop: **Market → Sources → add source → pegar** `https://perrylink-dsh-catalog.perrylink.workers.dev/catalog-source.json` **→ seleccionarlo**. La instalación sigue pasando por la verificación de identidad npm del mercado y tu confirmación.
+
+## PerryLink DSH Plugin Family
+
+Este proyecto forma parte de la familia de plugins de DeepSeek Harness de [PerryLink](https://github.com/PerryLink). El registro permanece plegado abajo para que cada README conserve una primera pantalla corta; expándelo para ver cada fila y su estado.
+
+<details>
+<summary>Expandir todos los plugins</summary>
+
+| Plugin | Estado |
+|---|---|
+| **[dsh-aqua-input-check](https://github.com/PerryLink/dsh-aqua-input-check)** |  |
+| **[dsh-archive-check](https://github.com/PerryLink/dsh-archive-check)** |  |
+| **[dsh-auto-review](https://github.com/PerryLink/dsh-auto-review)** |  |
+| **[dsh-autotier](https://github.com/PerryLink/dsh-autotier)** |  |
+| **[dsh-bid-ca-precheck](https://github.com/PerryLink/dsh-bid-ca-precheck)** |  |
+| **[dsh-bid-qual-check](https://github.com/PerryLink/dsh-bid-qual-check)** |  |
+| **[dsh-cert-mcp](https://github.com/PerryLink/dsh-cert-mcp)** |  |
+| **[dsh-checkpoint-rewind](https://github.com/PerryLink/dsh-checkpoint-rewind)** |  |
+| **[dsh-click](https://github.com/PerryLink/dsh-click)** |  |
+| **[dsh-composer-history](https://github.com/PerryLink/dsh-composer-history)** |  |
+| **[dsh-contract-stance](https://github.com/PerryLink/dsh-contract-stance)** |  |
+| **[dsh-customs-doc-check](https://github.com/PerryLink/dsh-customs-doc-check)** |  |
+| **[dsh-data-quality](https://github.com/PerryLink/dsh-data-quality)** |  |
+| **[dsh-demurrage-ledger](https://github.com/PerryLink/dsh-demurrage-ledger)** |  |
+| **[dsh-doublecheck](https://github.com/PerryLink/dsh-doublecheck)** |  |
+| **[dsh-drill-script-check](https://github.com/PerryLink/dsh-drill-script-check)** |  |
+| **[dsh-eia-guide-check](https://github.com/PerryLink/dsh-eia-guide-check)** |  |
+| **[dsh-emergency-plan](https://github.com/PerryLink/dsh-emergency-plan)** |  |
+| **[dsh-essay-rubric-check](https://github.com/PerryLink/dsh-essay-rubric-check)** |  |
+| **[dsh-evidence-check](https://github.com/PerryLink/dsh-evidence-check)** |  |
+| **[dsh-export-ctl-check](https://github.com/PerryLink/dsh-export-ctl-check)** |  |
+| **[dsh-fast](https://github.com/PerryLink/dsh-fast)** |  |
+| **[dsh-fmea-table-check](https://github.com/PerryLink/dsh-fmea-table-check)** |  |
+| **[dsh-forecast-penalty](https://github.com/PerryLink/dsh-forecast-penalty)** |  |
+| **[dsh-fund-research](https://github.com/PerryLink/dsh-fund-research)** |  |
+| **[dsh-github](https://github.com/PerryLink/dsh-github)** |  |
+| **[dsh-gongwen-flow-check](https://github.com/PerryLink/dsh-gongwen-flow-check)** |  |
+| **[dsh-gongwen-word-check](https://github.com/PerryLink/dsh-gongwen-word-check)** |  |
+| **[dsh-guard-plan-qc](https://github.com/PerryLink/dsh-guard-plan-qc)** |  |
+| **[dsh-hazchem-check](https://github.com/PerryLink/dsh-hazchem-check)** |  |
+| **[dsh-hazplan-check](https://github.com/PerryLink/dsh-hazplan-check)** |  |
+| **[dsh-hidden-risk-map](https://github.com/PerryLink/dsh-hidden-risk-map)** |  |
+| **[dsh-hs-classify](https://github.com/PerryLink/dsh-hs-classify)** |  |
+| **[dsh-icd-rule-check](https://github.com/PerryLink/dsh-icd-rule-check)** |  |
+| **[dsh-industry-research](https://github.com/PerryLink/dsh-industry-research)** |  |
+| **[dsh-lawcite-adapter](https://github.com/PerryLink/dsh-lawcite-adapter)** |  |
+| **[dsh-laya](https://github.com/PerryLink/dsh-laya)** |  |
+| **[dsh-lc-doc-check](https://github.com/PerryLink/dsh-lc-doc-check)** |  |
+| **[dsh-learning-gap-check](https://github.com/PerryLink/dsh-learning-gap-check)** |  |
+| **[dsh-library](https://github.com/PerryLink/dsh-library)** |  |
+| **[dsh-local-ai](https://github.com/PerryLink/dsh-local-ai)** |  |
+| **[dsh-lsp-actions](https://github.com/PerryLink/dsh-lsp-actions)** |  |
+| **[dsh-mask](https://github.com/PerryLink/dsh-mask)** |  |
+| **[dsh-mcp-panel](https://github.com/PerryLink/dsh-mcp-panel)** |  |
+| **[dsh-medrec-qc](https://github.com/PerryLink/dsh-medrec-qc)** |  |
+| **[dsh-memento](https://github.com/PerryLink/dsh-memento)** |  |
+| **[dsh-nsfc-form-check](https://github.com/PerryLink/dsh-nsfc-form-check)** |  |
+| **[dsh-nurse-record-check](https://github.com/PerryLink/dsh-nurse-record-check)** |  |
+| **[dsh-observe](https://github.com/PerryLink/dsh-observe)** |  |
+| **[dsh-origin-rvc-check](https://github.com/PerryLink/dsh-origin-rvc-check)** |  |
+| **[dsh-ota-review-check](https://github.com/PerryLink/dsh-ota-review-check)** |  |
+| **[dsh-output-styles](https://github.com/PerryLink/dsh-output-styles)** |  |
+| **[dsh-paper-doc-adapter](https://github.com/PerryLink/dsh-paper-doc-adapter)** |  |
+| **[dsh-permission-rules](https://github.com/PerryLink/dsh-permission-rules)** |  |
+| **[dsh-permit-report-check](https://github.com/PerryLink/dsh-permit-report-check)** |  |
+| **[dsh-pipeline-check](https://github.com/PerryLink/dsh-pipeline-check)** |  |
+| **[dsh-pleading-draft](https://github.com/PerryLink/dsh-pleading-draft)** |  |
+| **[dsh-plugin-doctor](https://github.com/PerryLink/dsh-plugin-doctor)** |  |
+| **[dsh-plugin-guide](https://github.com/PerryLink/dsh-plugin-guide)** |  |
+| **[dsh-plugin-kit](https://github.com/PerryLink/dsh-plugin-kit)** |  |
+| **[dsh-plugin-upgrade](https://github.com/PerryLink/dsh-plugin-upgrade)** |  |
+| **[dsh-policy-brief-draft](https://github.com/PerryLink/dsh-policy-brief-draft)** |  |
+| **[dsh-power-loss-split](https://github.com/PerryLink/dsh-power-loss-split)** |  |
+| **[dsh-power-ticket-check](https://github.com/PerryLink/dsh-power-ticket-check)** |  |
+| **[dsh-ppap-check](https://github.com/PerryLink/dsh-ppap-check)** |  |
+| **[dsh-protest-deadline](https://github.com/PerryLink/dsh-protest-deadline)** |  |
+| **[dsh-railway-window](https://github.com/PerryLink/dsh-railway-window)** |  |
+| **[dsh-repair-order-qc](https://github.com/PerryLink/dsh-repair-order-qc)** |  |
+| **[dsh-research-report](https://github.com/PerryLink/dsh-research-report)** |  |
+| **[dsh-review-reply-check](https://github.com/PerryLink/dsh-review-reply-check)** |  |
+| **[dsh-rulefile-check](https://github.com/PerryLink/dsh-rulefile-check)** |  |
+| **[dsh-safety-brief-check](https://github.com/PerryLink/dsh-safety-brief-check)** |  |
+| **[dsh-score](https://github.com/PerryLink/dsh-score)** |  |
+| **[dsh-session-sync](https://github.com/PerryLink/dsh-session-sync)** |  |
+| **[dsh-site-log-check](https://github.com/PerryLink/dsh-site-log-check)** |  |
+| **[dsh-skill-pack-security](https://github.com/PerryLink/dsh-skill-pack-security)** |  |
+| **[dsh-soe-decision-check](https://github.com/PerryLink/dsh-soe-decision-check)** |  |
+| **[dsh-soilwater-check](https://github.com/PerryLink/dsh-soilwater-check)** |  |
+| **[dsh-sop-sync-check](https://github.com/PerryLink/dsh-sop-sync-check)** |  |
+| **[dsh-spc-gbt-adapter](https://github.com/PerryLink/dsh-spc-gbt-adapter)** |  |
+| **[dsh-talk](https://github.com/PerryLink/dsh-talk)** |  |
+| **[dsh-tender-extract](https://github.com/PerryLink/dsh-tender-extract)** |  |
+| **[dsh-tender-matrix](https://github.com/PerryLink/dsh-tender-matrix)** |  |
+| **[dsh-test-drive](https://github.com/PerryLink/dsh-test-drive)** |  |
+| **[dsh-dida](https://github.com/PerryLink/dsh-dida)** |  |
+| **[dsh-translate](https://github.com/PerryLink/dsh-translate)** |  |
+| **[dsh-warranty-calc](https://github.com/PerryLink/dsh-warranty-calc)** |  |
+| **[dsh-budget](https://github.com/PerryLink/dsh-budget)** | 🧊 CONGELADO — ver el README del repositorio |
+| **[dsh-claude-move](https://github.com/PerryLink/dsh-claude-move)** | 🧊 CONGELADO — ver el README del repositorio |
+| **[dsh-defend](https://github.com/PerryLink/dsh-defend)** | 🧊 CONGELADO — ver el README del repositorio |
+| **[dsh-draw](https://github.com/PerryLink/dsh-draw)** | 🧊 CONGELADO — ver el README del repositorio |
+| **[dsh-reach](https://github.com/PerryLink/dsh-reach)** | 🧊 CONGELADO — ver el README del repositorio |
+| **[dsh-background-agents](https://github.com/PerryLink/dsh-background-agents)** | 🚫 RETIRADO — ver el README del repositorio |
+| **[dsh-session-pin](https://github.com/PerryLink/dsh-session-pin)** | 🚫 RETIRADO — ver el README del repositorio |
+| **[dsh-team-rooms](https://github.com/PerryLink/dsh-team-rooms)** | 🚫 RETIRADO — ver el README del repositorio |
+
+</details>
+
+## Licencia
+
+[Apache-2.0](LICENSE)

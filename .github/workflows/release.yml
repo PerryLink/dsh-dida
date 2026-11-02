@@ -1,0 +1,43 @@
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run typecheck:ci
+      - run: pnpm test
+      - run: pnpm run build
+      - run: pnpm run verify:artifacts
+      # OIDC only. `id-token: write` above lets npm exchange a short-lived credential
+      # via trusted publishing. Writing `_authToken` into ~/.npmrc (or passing
+      # NODE_AUTH_TOKEN) makes npm take the token path instead; with that token now
+      # rejected the publish fails to authenticate WITHOUT ever attempting the
+      # exchange, which is what the v0.1.8/v0.1.9 runs showed: ENEEDAUTH and no
+      # /-/npm/v1/oidc/token/exchange request in the log.
+      #
+      # Requests for that exchange need npm >= 11.5.1, and the npm bundled with Node 22
+      # is 10.x. That is why the ENEEDAUTH above showed no exchange request: the client
+      # could not make one. Upgrade npm first, as the sibling repos do.
+      - run: npm install -g npm@^11.5.1
+      - run: npm publish --access public --provenance
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          body_path: CHANGELOG.md

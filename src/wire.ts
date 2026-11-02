@@ -1,0 +1,405 @@
+/**
+ * The TickTick bridge's wire vocabulary: the result types served over the
+ * `ticktick` Remote namespace, their zod v4 validation schema (the strict
+ * codec both Typert faces carry) and the invocation descriptors shared
+ * verbatim by the host `./typert` manifest (`src/typert.host.ts`) and the
+ * client Remote contribution (`src/client/remote.ts`). One canonical source
+ * for both faces keeps the host and client codecs from ever drifting apart.
+ *
+ * @module dsh-ticktick/wire
+ */
+
+import { z } from 'zod'
+import type { InvocationDescriptor } from '@deepseek-ai/dsh-typert-protocol'
+
+/** Connection and configuration facts the panel and `ticktick_status` read. */
+export interface TicktickStatus {
+  /** A Bearer token is currently resolvable (file or settings). */
+  configured: boolean
+  /** The MCP client finished its initialize handshake. */
+  connected: boolean
+  /** Active MCP endpoint. */
+  mcpUrl: string
+  /** Most recent bridge error, sanitized for display; `null` when none. */
+  lastError: string | null
+  /** Resolved raw tool names (`''` = unresolved). */
+  toolNames: {
+    projects: string
+    tasks: string
+    create: string
+    complete: string
+    remove: string
+    update: string
+    move: string
+  }
+}
+
+/** Strict wire schema for {@link TicktickStatus}. */
+export const TICKTICK_STATUS_SCHEMA = z.object({
+  configured: z.boolean(),
+  connected: z.boolean(),
+  mcpUrl: z.string(),
+  lastError: z.string().nullable(),
+  toolNames: z.object({
+    projects: z.string(),
+    tasks: z.string(),
+    create: z.string(),
+    complete: z.string(),
+    remove: z.string(),
+    update: z.string(),
+    move: z.string(),
+  }),
+})
+
+/** One project (list) as the widget renders it. */
+export interface TicktickProjectWire {
+  id: string
+  name: string
+}
+
+/** One task as the widget renders it. */
+export interface TicktickTaskWire {
+  id: string
+  title: string
+  done: boolean
+  /** Owning project id, or `null` when the server did not carry one. */
+  projectId: string | null
+  /** ISO due date, or `null` when the task has none. */
+  dueDate: string | null
+  /** TickTick sort order, or `null` when absent. */
+  sortOrder: number | null
+}
+
+/** Aggregated undone tasks plus per-list warnings. */
+export interface TicktickTasksResult {
+  tasks: readonly TicktickTaskWire[]
+  warnings: readonly string[]
+}
+
+/** Strict wire schema for {@link TicktickTasksResult}. */
+export const TICKTICK_TASKS_RESULT_SCHEMA = z.object({
+  tasks: z.array(z.object({
+    id: z.string(),
+    title: z.string(),
+    done: z.boolean(),
+    projectId: z.string().nullable(),
+    dueDate: z.string().nullable(),
+    sortOrder: z.number().int().nullable(),
+  })),
+  warnings: z.array(z.string()),
+})
+
+/** One created task reference, plus the P2 read-after-write verification. */
+export interface TicktickAddResult {
+  task: TicktickTaskWire | null
+  /** Read-back warning; `null` when the creation verified clean or no lookup tool exists. */
+  verifyWarning: string | null
+}
+
+/** Strict wire schema for {@link TicktickAddResult}. */
+export const TICKTICK_ADD_RESULT_SCHEMA = z.object({
+  task: z.object({
+    id: z.string(),
+    title: z.string(),
+    done: z.boolean(),
+    projectId: z.string().nullable(),
+    dueDate: z.string().nullable(),
+    sortOrder: z.number().int().nullable(),
+  }).nullable(),
+  verifyWarning: z.string().nullable(),
+})
+
+/** One row of the P2 batch-add payload. */
+export const BATCH_ADD_TASK_SCHEMA = z.object({
+  title: z.string(),
+  projectId: z.string().optional(),
+  dueDate: z.string().optional(),
+})
+
+/** Strict wire schema for the `ticktick/batchAdd` result. */
+export const BATCH_ADD_RESULT_SCHEMA = z.object({
+  created: z.number().int(),
+})
+
+/** One-shot connectivity probe result (Plugins page test button). */
+export interface TicktickProbeResult {
+  ok: boolean
+  toolCount: number
+  error: string | null
+}
+
+/** Strict wire schema for {@link TicktickProbeResult}. */
+export const TICKTICK_PROBE_RESULT_SCHEMA = z.object({
+  ok: z.boolean(),
+  toolCount: z.number().int(),
+  error: z.string().nullable(),
+})
+
+/** One accepted mutation. */
+export interface TicktickOkResult {
+  ok: boolean
+}
+
+/** Strict wire schema for {@link TicktickOkResult}. */
+export const TICKTICK_OK_RESULT_SCHEMA = z.object({
+  ok: z.boolean(),
+})
+
+/**
+ * Profile-entry id of this plugin's bundle row (`cordis.patch.yml`), which is
+ * also its settings-form namespace and the key the browser half registers its
+ * configuration page under (`<package name>#<row id>`).
+ */
+export const TICKTICK_SETTINGS_NS = 'ticktick'
+
+/** Package name: half of the `plugins.row.config` key, and the client bundle id. */
+export const TICKTICK_PACKAGE_NAME = 'dsh-dida'
+
+/**
+ * The `plugins.row.config` key this plugin's configuration page registers
+ * under: the bare package name plus the Loader entry id the bundle's patch
+ * declares. The Plugins page only gives a row a configure control while this
+ * exact key is registered.
+ */
+export const TICKTICK_ROW_CONFIG_KEY = `${TICKTICK_PACKAGE_NAME}#${TICKTICK_SETTINGS_NS}`
+
+/**
+ * Strict wire codec: the single `create()` factory face. TypertCodec's strict
+ * form materializes the process-realm schema on first boundary use; the
+ * 0.1.5-line `schema` field is gone, and a codec without `create` is refused
+ * at mount by the Typert Loader.
+ */
+function wireStrict<T>(typeSymbol: string, schema: T) {
+  return Object.freeze({ mode: 'strict' as const, typeSymbol, create: () => schema })
+}
+
+/** Parameter codec helper: one JSON-sourced string parameter. */
+function stringParam(name: string, typeSymbol: string, acceptsUndefined = false): InvocationDescriptor['parameters'][number] {
+  return Object.freeze({
+    name,
+    wire: name,
+    source: 'json' as const,
+    ...(acceptsUndefined ? { acceptsUndefined: true } : {}),
+    codec: wireStrict(typeSymbol, z.string()),
+  })
+}
+
+/** Parameter codec helper: one JSON-sourced number parameter. */
+function numberParam(name: string, typeSymbol: string, acceptsUndefined = false): InvocationDescriptor['parameters'][number] {
+  return Object.freeze({
+    name,
+    wire: name,
+    source: 'json' as const,
+    ...(acceptsUndefined ? { acceptsUndefined: true } : {}),
+    codec: wireStrict(typeSymbol, z.number().int()),
+  })
+}
+
+/** Result codec helper. */
+function resultCodec(typeSymbol: string, schema: z.ZodType<unknown>): InvocationDescriptor['result'] {
+  return wireStrict(typeSymbol, schema)
+}
+
+/** The `ticktick/status` invocation descriptor. */
+export const TICKTICK_STATUS_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/status',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'status',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([]),
+  result: resultCodec('dsh-ticktick/types#TicktickStatus', TICKTICK_STATUS_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/projects` invocation descriptor. */
+export const TICKTICK_PROJECTS_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/projects',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'projects',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([]),
+  result: resultCodec('dsh-ticktick/types#TicktickProjectsResult', z.object({
+    projects: z.array(z.object({ id: z.string(), name: z.string() })),
+  })),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/tasks` invocation descriptor (optional list filter). */
+export const TICKTICK_TASKS_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/tasks',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'tasks',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('projectId', 'dsh-ticktick/types#TasksProjectId', true),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickTasksResult', TICKTICK_TASKS_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/add` invocation descriptor. */
+export const TICKTICK_ADD_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/add',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'add',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('title', 'dsh-ticktick/types#AddTitle'),
+    stringParam('projectId', 'dsh-ticktick/types#AddProjectId', true),
+    stringParam('dueDate', 'dsh-ticktick/types#AddDueDate', true),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickAddResult', TICKTICK_ADD_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/complete` invocation descriptor. */
+export const TICKTICK_COMPLETE_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/complete',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'complete',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('id', 'dsh-ticktick/types#CompleteId'),
+    stringParam('projectId', 'dsh-ticktick/types#CompleteProjectId'),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickOkResult', TICKTICK_OK_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/**
+ * The `ticktick/removeTask` invocation descriptor. The wire method is
+ * `removeTask`, not `remove`: `RemoteNamespaceService` owns a bookkeeping
+ * `remove(kind, method, token)` on its prototype, so a namespace method named
+ * `remove` is rejected by `assertMethodAvailable` before any fiber exists.
+ * The host keeps dispatching to `TicktickService.remove` through
+ * `implementation`, and the stable wire id remains `.../remove`.
+ */
+export const TICKTICK_REMOVE_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/remove',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'removeTask',
+  implementation: 'remove',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('id', 'dsh-ticktick/types#RemoveId'),
+    stringParam('projectId', 'dsh-ticktick/types#RemoveProjectId'),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickOkResult', TICKTICK_OK_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/setDue` invocation descriptor (absent date = clear). */
+export const TICKTICK_SET_DUE_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/setDue',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'setDue',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('id', 'dsh-ticktick/types#SetDueId'),
+    stringParam('projectId', 'dsh-ticktick/types#SetDueProjectId', true),
+    stringParam('dueDate', 'dsh-ticktick/types#SetDueDate', true),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickOkResult', TICKTICK_OK_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/reorder` invocation descriptor. */
+export const TICKTICK_REORDER_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/reorder',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'reorder',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('id', 'dsh-ticktick/types#ReorderId'),
+    stringParam('projectId', 'dsh-ticktick/types#ReorderProjectId', true),
+    numberParam('sortOrder', 'dsh-ticktick/types#ReorderSortOrder'),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickOkResult', TICKTICK_OK_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/completed` invocation descriptor (P2 completed view). */
+export const TICKTICK_COMPLETED_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/completed',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'completed',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('projectId', 'dsh-ticktick/types#CompletedProjectId', true),
+    numberParam('days', 'dsh-ticktick/types#CompletedDays', true),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickTasksResult', TICKTICK_TASKS_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/search` invocation descriptor (P2 full-text search). */
+export const TICKTICK_SEARCH_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/search',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'search',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([
+    stringParam('query', 'dsh-ticktick/types#SearchQuery'),
+  ]),
+  result: resultCodec('dsh-ticktick/types#TicktickTasksResult', TICKTICK_TASKS_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/batchAdd` invocation descriptor (P2 batch create). */
+export const TICKTICK_BATCH_ADD_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/batchAdd',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'batchAdd',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([Object.freeze({
+    name: 'tasks',
+    wire: 'tasks',
+    source: 'json' as const,
+    codec: wireStrict('dsh-ticktick/types#BatchAddTasks', z.array(BATCH_ADD_TASK_SCHEMA)),
+  } satisfies InvocationDescriptor['parameters'][number])]),
+  result: resultCodec('dsh-ticktick/types#BatchAddResult', BATCH_ADD_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/** The `ticktick/probe` invocation descriptor (settings-card connectivity test). */
+export const TICKTICK_PROBE_DESCRIPTOR = Object.freeze({
+  id: 'dsh-ticktick#ticktick/probe',
+  service: 'ticktick',
+  namespace: 'ticktick',
+  method: 'probe',
+  invocation: Object.freeze({ kind: 'direct' }),
+  parameters: Object.freeze([]),
+  result: resultCodec('dsh-ticktick/types#TicktickProbeResult', TICKTICK_PROBE_RESULT_SCHEMA),
+  sourceLocation: Object.freeze({ file: 'src/wire.ts', line: 1, column: 1 }),
+} as const) satisfies InvocationDescriptor
+
+/**
+ * The canonical invocation list both Typert faces register — the host
+ * manifest and the client contribution share these exact descriptor objects,
+ * so the two wire codecs can never drift apart.
+ */
+export const TICKTICK_INVOCATIONS = Object.freeze([
+  TICKTICK_STATUS_DESCRIPTOR,
+  TICKTICK_PROJECTS_DESCRIPTOR,
+  TICKTICK_TASKS_DESCRIPTOR,
+  TICKTICK_ADD_DESCRIPTOR,
+  TICKTICK_COMPLETE_DESCRIPTOR,
+  TICKTICK_REMOVE_DESCRIPTOR,
+  TICKTICK_SET_DUE_DESCRIPTOR,
+  TICKTICK_REORDER_DESCRIPTOR,
+  TICKTICK_COMPLETED_DESCRIPTOR,
+  TICKTICK_SEARCH_DESCRIPTOR,
+  TICKTICK_BATCH_ADD_DESCRIPTOR,
+  TICKTICK_PROBE_DESCRIPTOR,
+])
