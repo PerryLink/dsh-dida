@@ -2,9 +2,9 @@
 
 > **已从 [`@perrylink/dsh-ticktick`](https://www.npmjs.com/package/@perrylink/dsh-ticktick) 更名。** 旧 scoped 包已弃用；请安装 **`dsh-dida`**。
 
-> Release stamp: `0.1.13` (2026-10-04).
+> Release stamp: `0.2.0` (2026-10-04).
 
-> **包名说明。** 本项目的 npm 发布名是 **`dsh-dida`**。裸名 `dsh-dida` 属于另一个无关项目——装它不会装到本插件。
+> **包名说明。** 本项目的 npm 发布名是 **`dsh-dida`**；旧 scoped 包 `@perrylink/dsh-ticktick` 已弃用。
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%5E22.19%20%7C%7C%20%3E%3D24-brightgreen.svg)](#)
@@ -14,8 +14,8 @@
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-dida)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-dida/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-dida/actions)
 [![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-dida?label=version)](https://github.com/PerryLink/dsh-dida/releases)
-[![npm version](https://img.shields.io/npm/v/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
-[![npm downloads](https://img.shields.io/npm/dm/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm version](https://img.shields.io/npm/v/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-dida?metric=downloads&lang=zh)](https://dshfind.com/zh/plugins/PerryLink/dsh-dida?ref=badge)
 
 [English](README.md) | **中文** | [Español](README-es.md) | [Português](README-pt.md) | [हिन्दी](README-hi.md)

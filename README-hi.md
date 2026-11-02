@@ -9,7 +9,7 @@ dsh plugin --profile <name> add dsh-dida
 ```
 
 
-> Release stamp: `0.1.13` (2026-10-04).
+> Release stamp: `0.2.0` (2026-10-04).
 
 > **पैकेज नाम।** यह प्रोजेक्ट npm पर **`dsh-dida`** के रूप में प्रकाशित होता है। सादा नाम `dsh-dida` किसी असंबंधित प्रोजेक्ट का है — उसे इंस्टॉल करने से यह प्लगइन इंस्टॉल नहीं होता।
 
@@ -21,8 +21,8 @@ dsh plugin --profile <name> add dsh-dida
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-dida)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-dida/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-dida/actions)
 [![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-dida?label=version)](https://github.com/PerryLink/dsh-dida/releases)
-[![npm version](https://img.shields.io/npm/v/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
-[![npm downloads](https://img.shields.io/npm/dm/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm version](https://img.shields.io/npm/v/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-dida?metric=downloads&lang=hi)](https://dshfind.com/hi/plugins/PerryLink/dsh-dida?ref=badge)
 
 [English](README.md) | [简体中文](README-zh.md) | [Español](README-es.md) | [Português](README-pt.md) | **हिन्दी**

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
 const FILES = ['README.md', 'README-zh.md', 'README-es.md', 'README-pt.md', 'README-hi.md']
-const INSTALL_COMMAND = 'dsh plugin --profile web add @perrylink/dsh-ticktick'
+const INSTALL_RE = /dsh plugin --profile \S+ add (?:@perrylink\/)?dsh-dida/
 
 const failures = []
 const read = (file) => {
@@ -56,7 +56,7 @@ for (let index = 1; index < FILES.length; index++) {
   if (sectionCount(text) !== expectedSections) {
     failures.push(`${file}: ${sectionCount(text)} '## ' sections, expected ${expectedSections}`)
   }
-  if (!text.includes(INSTALL_COMMAND)) {
+  if (!INSTALL_RE.test(text)) {
     failures.push(`${file}: missing the install command`)
   }
   for (const key of expectedKeys) {

@@ -1,5 +1,5 @@
 name: Bug report
-description: Report a bug in dsh-ticktick
+description: Report a bug in dsh-dida
 title: 'bug: '
 labels: [bug]
 body:
@@ -7,7 +7,7 @@ body:
     id: package-version
     attributes:
       label: Package version
-      description: The installed dsh-ticktick version (`npm ls dsh-ticktick`, or the git commit when installed from source).
+      description: The installed dsh-dida version (`npm ls dsh-dida`, or the git commit when installed from source).
     validations:
       required: true
   - type: input

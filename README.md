@@ -7,11 +7,11 @@ dsh plugin --profile <name> add dsh-dida
 ```
 
 
-> Release stamp: `0.1.13` (2026-10-04).
+> Release stamp: `0.2.0` (2026-10-04).
 
 **English** | [中文](README-zh.md) | [Español](README-es.md) | [Português](README-pt.md) | [हिन्दी](README-hi.md)
 
-> **Package name.** This project publishes to npm as **`dsh-dida`**. The bare npm name `dsh-dida` belongs to a different, unrelated project — installing it does not install this plugin.
+> **Package name.** This project publishes to npm as **`dsh-dida`**; the old scoped package `@perrylink/dsh-ticktick` is deprecated.
 
 TickTick / Dida365 (滴答清单) task bridge for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness): a Session-header task panel (list filter, quick add, complete, delete, due dates, drag reorder), eleven curated agent tools, a configuration page on the Plugins page, and a typed Remote service — all over the official TickTick MCP endpoint.
 
@@ -24,8 +24,8 @@ TickTick / Dida365 (滴答清单) task bridge for [DeepSeek Harness](https://git
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-dida)
 [![CI](https://img.shields.io/github/actions/workflow/status/PerryLink/dsh-dida/ci.yml?branch=main&label=CI)](https://github.com/PerryLink/dsh-dida/actions)
 [![Version](https://img.shields.io/github/v/tag/PerryLink/dsh-dida?label=version)](https://github.com/PerryLink/dsh-dida/releases)
-[![npm version](https://img.shields.io/npm/v/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
-[![npm downloads](https://img.shields.io/npm/dm/%40perrylink%2Fdsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm version](https://img.shields.io/npm/v/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
+[![npm downloads](https://img.shields.io/npm/dm/dsh-dida)](https://www.npmjs.com/package/dsh-dida)
 [![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-dida?metric=downloads)](https://dshfind.com/plugins/PerryLink/dsh-dida?ref=badge)
 
 ## Install
