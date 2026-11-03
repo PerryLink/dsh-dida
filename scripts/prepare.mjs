@@ -1,7 +1,8 @@
-// Self-contained build used by both `pnpm run build` and the git-install
-// `prepare` lifecycle: emits lib/types (tsc declarations) and lib/*.js
-// (tsdown bundles). Uses ONLY the build tools declared in `dependencies`
-// because pnpm does not install devDependencies of git-hosted packages.
+// Self-contained build used by `pnpm run build`, the git-install `prepare`
+// lifecycle and `prepack`: emits lib/types (tsc declarations) and lib/*.js
+// (tsdown bundles). The build tools (typescript, tsdown) are resolved from the
+// locally installed devDependencies. `prepack` is needed because `pnpm pack`
+// runs only prepack, not prepare.
 import { createRequire } from 'node:module'
 import { spawnSync } from 'node:child_process'
 import { rmSync } from 'node:fs'
