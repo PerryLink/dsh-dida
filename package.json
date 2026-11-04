@@ -101,7 +101,12 @@
         "hotReload": null,
         "remove": null
       }
-    }
+    },
+    "capabilities": [
+      "network:egress",
+      "tools:register"
+    ],
+    "labels": []
   },
   "dshWorkshop": {
     "schema": "omdsh-workshop-package/v1",
