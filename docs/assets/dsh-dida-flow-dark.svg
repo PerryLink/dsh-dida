@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="580" viewBox="0 0 1200 580" role="img" aria-label="dsh-dida architecture: session header and ticktick_* tools feed TicktickService, which calls the official TickTick MCP endpoint; the configuration card writes the profile row">
+<title>dsh-dida architecture</title>
+<rect width="1200" height="580" rx="18" fill="#0d1117"/>
+<text x="60" y="62" fill="#f0f6fc" font-family="ui-sans-serif,system-ui,sans-serif" font-size="30" font-weight="700">dsh-dida</text>
+<text x="60" y="94" fill="#8b949e" font-family="ui-monospace,monospace" font-size="16">TickTick / Dida365 task bridge · official MCP endpoint · panel + 11 tools</text>
+<line x1="60" y1="116" x2="1140" y2="116" stroke="#30363d"/>
+<rect x="60" y="150" width="300" height="84" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="210" y="182" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">session header</text>
+<text x="210" y="206" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">action: ticktick</text>
+<rect x="60" y="270" width="300" height="84" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="210" y="302" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">ticktick_* tools</text>
+<text x="210" y="326" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">ctx.tools</text>
+<rect x="60" y="390" width="300" height="84" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="210" y="422" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">plugins.row.config</text>
+<text x="210" y="446" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">ctx.configForms</text>
+<rect x="470" y="210" width="260" height="140" rx="14" fill="#161b22" stroke="#4B67B4" stroke-width="2"/>
+<text x="600" y="242" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">TicktickService</text>
+<text x="600" y="266" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">Remote namespace: ticktick</text>
+<text x="600" y="288" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">ctx.remote.ticktick.*</text>
+<text x="600" y="310" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">tools/call</text>
+<rect x="810" y="210" width="310" height="110" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="965" y="242" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">MCP client</text>
+<text x="965" y="266" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">streamable HTTP</text>
+<text x="965" y="288" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">session id · Retry-After</text>
+<rect x="810" y="360" width="310" height="70" rx="14" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+<text x="965" y="392" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">https://mcp.dida365.com</text>
+<text x="965" y="416" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">official TickTick MCP</text>
+<rect x="470" y="420" width="260" height="90" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2" stroke-dasharray="6 5"/>
+<text x="600" y="452" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">profile row: ticktick</text>
+<text x="600" y="476" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">Volatile Config</text>
+<text x="600" y="498" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">no restart</text>
+<rect x="810" y="450" width="310" height="80" rx="14" fill="#161b22" stroke="#30363d" stroke-width="2"/>
+<text x="965" y="482" fill="#f0f6fc" text-anchor="middle" font-family="ui-monospace,monospace" font-size="16" font-weight="700">token</text>
+<text x="965" y="506" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">token &gt; DIDA365_TOKEN &gt; tokenFile</text>
+<text x="965" y="528" fill="#8b949e" text-anchor="middle" font-family="ui-monospace,monospace" font-size="12">re-read per request · 401 → reset</text>
+<path d="M360 190h60v55h38" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M456 240l8 5-8 5" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M360 310h98" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M456 305l8 5-8 5" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M360 430h60v35h38" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M456 460l8 5-8 5" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M730 265h68" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M796 260l8 5-8 5" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M965 320v28" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M960 346l5 8 5-8" fill="none" stroke="#8b949e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="60" y="560" fill="#8b949e" font-family="ui-monospace,monospace" font-size="13">protectedTaskIds · refuse before wire · reads = cloud state · writes = cloud account</text>
+</svg>
