@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-dark.svg">
-  <img src="docs/assets/dsh-dida-flow-light.svg" width="100%" alt="dsh-dida 架构图：会话头部 ticktick 面板与 ticktick_* 工具汇入 TicktickService，经 MCP client 调官方滴答 MCP 端点；配置页写 profile 行 ticktick">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-dida-hero-zh-light.webp" width="100%" alt="dsh-dida 横幅：会话头部动作「滴答清单」打开的待办面板（全部清单筛选、未完成/已完成、搜索、快加日期、截止与清单 chip、删除），右侧是 11 个 ticktick_* 工具与 tools/call 到 mcp.dida365.com 的线框">
 </picture>
 
 # dsh-dida
@@ -36,6 +36,15 @@ dsh plugin --profile <name> add dsh-dida
 ## 它是什么
 
 `dsh-dida` 把滴答清单（TickTick / Dida365）接进 DeepSeek Harness：会话头部多出一个 `ticktick` 面板，可以按清单过滤、快速添加、勾选完成、确认删除、设置/清除截止日期、拖拽排序；没配令牌时还能在面板里一步粘贴保存。模型侧拿到 11 个 `ticktick_*` 工具，能查清单、加任务、改期、搜索、批量添加；插件页上还有一张配置卡。所有读写都走官方滴答 MCP 端点，落到你的滴答云端账号，手机/桌面/网页版同步可见——插件自己不建本地任务库。
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="dsh-dida 结构图：会话头部面板、11 个工具与写 profile 行的配置卡汇入 TicktickService 的三道闸（受保护 id、每请求解析令牌、惰性引导客户端），单条线经 MCP client 到 mcp.dida365.com 与云端账号；setDue 的绕行回环与 401 重置回环分别挂在服务与线路上">
+</picture>
+
+</div>
 
 ## 三步上手
 
@@ -346,7 +355,7 @@ pnpm run check:readmes                             # 五语 README 一致性
 pnpm pack                                          # 发布 tarball
 ```
 
-构建产物在 `lib/`：`lib/index.js`、`lib/typert.host.js`、`lib/client.js` 与 `lib/types/`。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow），可重复执行：`python scripts/gen-readme-assets.py`。
+构建产物在 `lib/`：`lib/index.js`、`lib/typert.host.js`、`lib/client.js` 与 `lib/types/`。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Pillow 画 hero，手写 SVG 画结构图），可重复执行：`python scripts/gen-readme-assets.py` 写出 `docs/assets/dsh-dida-hero-{zh,en}-{light,dark}.webp` 与 `docs/assets/dsh-dida-flow-v5-{light,dark}.svg`（hero 按语言本地化，结构图只有命令 token，五语共用）。
 
 ### 对真实端点复验
 

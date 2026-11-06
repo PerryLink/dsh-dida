@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-dark.svg">
-  <img src="docs/assets/dsh-dida-flow-light.svg" width="100%" alt="dsh-dida architecture: the session-header ticktick panel and the ticktick_* tools feed TicktickService, which calls the official TickTick MCP endpoint via a minimal MCP client; the configuration page writes the ticktick profile row">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-hero-en-dark.webp">
+  <img src="docs/assets/dsh-dida-hero-en-light.webp" width="100%" alt="dsh-dida banner: the TickTick action in the session header opens the task panel (list filter, undone/completed views, search, quick add with a date, due and list chips, delete), beside the eleven ticktick_* tools and the tools/call wire to mcp.dida365.com">
 </picture>
 
 # dsh-dida
@@ -36,6 +36,15 @@ dsh plugin --profile <name> add dsh-dida
 ## What it is
 
 `dsh-dida` brings TickTick / Dida365 into DeepSeek Harness: the Session header gains a `ticktick` panel for filtering by list, quick-adding, completing, deleting with confirmation, setting or clearing due dates, and drag-reordering; when no token is configured the panel offers one-step in-panel setup. The model gets eleven `ticktick_*` tools for lists, task CRUD, due dates, reordering, completed queries, search, and batch add, plus a configuration card on the Plugins page. Every read and write goes through the official TickTick MCP endpoint and lands on your TickTick cloud account, so the phone, desktop, and web apps see it — the plugin keeps no local task store of its own.
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="dsh-dida structure: the session-header panel, the eleven tools and the config card that writes the profile row fan into TicktickService's three gates (protected ids, per-request token resolve, lazy client bootstrap); one wire runs to mcp.dida365.com and your cloud account, with the setDue detour ring and the 401 reset loop attached">
+</picture>
+
+</div>
 
 ## Three-step setup
 
@@ -346,7 +355,7 @@ pnpm run check:readmes                             # five-language README consis
 pnpm pack                                          # the published tarball
 ```
 
-Build output lives in `lib/`: `lib/index.js`, `lib/typert.host.js`, `lib/client.js`, and `lib/types/`. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) and are safe to re-run: `python scripts/gen-readme-assets.py`.
+Build output lives in `lib/`: `lib/index.js`, `lib/typert.host.js`, `lib/client.js`, and `lib/types/`. The README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Pillow for the hero, hand-written SVG for the structure figure) and are safe to re-run: `python scripts/gen-readme-assets.py` writes `docs/assets/dsh-dida-hero-{zh,en}-{light,dark}.webp` and `docs/assets/dsh-dida-flow-v5-{light,dark}.svg` (localized hero, token-only structure figure shared by all five languages).
 
 ### Verify against the live endpoint
 

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="fig-title">
+<title id="fig-title">dsh-dida — one guarded wire: three surfaces, one remote namespace, one MCP endpoint</title>
+<desc>Three surfaces (session-header panel, eleven tools, config card that writes the profile row) fan into TicktickService, whose three gates are protectedTaskIds, a per-request token resolve and a lazy client bootstrap; the single wire leaves for mcp.dida365.com and the TickTick cloud. Two loops stay attached: the measured setDue detour and the 401 reset back into the token gate.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9f6fd"/><stop offset="1" stop-color="#e4eaf8"/></linearGradient>
+<filter id="soft" x="-25%" y="-25%" width="150%" height="150%"><feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#2a3a6a" flood-opacity="0.16"/></filter>
+<marker id="arr-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#4B67B4"/></marker>
+<marker id="arr-sub" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#5a6275"/></marker>
+<marker id="arr-fnt" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#8a93a8"/></marker>
+<marker id="arr-amb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#b45309"/></marker>
+</defs>
+<rect width="1100" height="660" fill="url(#bg)"/>
+<text x="48" y="54" font-size="22" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">dsh-dida · one guarded wire</text>
+<text x="1052" y="54" font-size="13" fill="#8a93a8" font-family="'Consolas','Cascadia Mono',monospace" text-anchor="end">v0.2.0 · Apache-2.0</text>
+<text x="48" y="82" font-size="13" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">three surfaces → one Remote namespace → one MCP wire; the token is re-read per request, a 401 drops the client</text>
+<text x="48" y="116" font-size="12" fill="#8a93a8" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700" letter-spacing="1.5">SURFACES</text>
+<rect x="48" y="126" width="248" height="82" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="66" y="152" font-size="14" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">session header</text>
+<text x="66" y="172" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">ticktick panel</text>
+<text x="66" y="194" font-size="11.5" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace">ctx.remote.ticktick.*</text>
+<rect x="48" y="218" width="248" height="82" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="66" y="244" font-size="14" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">11 × ticktick_* tools</text>
+<text x="66" y="264" font-size="11.5" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace">ctx.tools</text>
+<text x="66" y="286" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">read 5 · write 6</text>
+<rect x="48" y="310" width="248" height="82" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="66" y="336" font-size="14" fill="#1b2233" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700">plugins.row.config</text>
+<text x="66" y="356" font-size="11.5" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace">ctx.configForms</text>
+<text x="66" y="378" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">writes the profile row</text>
+<rect x="48" y="404" width="248" height="68" rx="16" fill="#f4f7fd" stroke="#8fa2d8" stroke-width="1.4" stroke-dasharray="7 6"/>
+<text x="66" y="428" font-size="12.5" fill="#2f3750" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700">profile row: ticktick</text>
+<text x="66" y="450" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">Volatile Config · live</text>
+<rect x="48" y="484" width="248" height="102" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="66" y="504" font-size="11.5" fill="#8a93a8" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700" letter-spacing="0.5">TOKEN · resolveToken()</text>
+<rect x="66" y="510" width="212" height="20" rx="8" fill="#eef1fa"/>
+<text x="76" y="525" font-size="12" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace">1 settings secret</text>
+<rect x="66" y="534" width="188" height="20" rx="8" fill="#f4f7fd" stroke="#d6dded" stroke-width="1"/>
+<text x="76" y="549" font-size="12" fill="#2f3750" font-family="'Consolas','Cascadia Mono',monospace">2 DIDA365_TOKEN</text>
+<rect x="66" y="558" width="164" height="20" rx="8" fill="#f4f7fd" stroke="#d6dded" stroke-width="1"/>
+<text x="76" y="573" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">3 tokenFile · $DSH_HOME</text>
+<path d="M296 167H316" stroke="#4B67B4" stroke-width="2" marker-end="url(#arr-acc)"/>
+<path d="M296 259H316" stroke="#4B67B4" stroke-width="2" marker-end="url(#arr-acc)"/>
+<path d="M296 438H306V287H316" stroke="#8fa2d8" stroke-width="1.8" fill="none" stroke-dasharray="6 5" marker-end="url(#arr-fnt)"/>
+<path d="M172 392V400" stroke="#8fa2d8" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arr-fnt)"/>
+<rect x="320" y="126" width="356" height="460" rx="20" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="340" y="154" font-size="16" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">TicktickService</text>
+<text x="340" y="174" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">Remote ns ticktick · one policy for both faces</text>
+<line x1="340" y1="184" x2="656" y2="184" stroke="#d6dded"/>
+<rect x="336" y="192" width="324" height="62" rx="14" fill="#f4f7fd"/>
+<text x="350" y="213" font-size="13" fill="#4B67B4" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">G1 · protectedTaskIds</text>
+<text x="350" y="234" font-size="12" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">a mutating call is refused before any wire call</text>
+<text x="350" y="249" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">→ ticktick/protected</text>
+<rect x="336" y="260" width="324" height="62" rx="14" fill="#f4f7fd"/>
+<text x="350" y="281" font-size="13" fill="#4B67B4" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">G2 · resolveToken() per request</text>
+<text x="350" y="302" font-size="12" fill="#2f3750" font-family="'Consolas','Cascadia Mono',monospace">secret &gt; DIDA365_TOKEN &gt; tokenFile</text>
+<text x="350" y="317" font-size="11.5" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">null → ticktick/no-token · 401 → reset()</text>
+<rect x="336" y="328" width="324" height="82" rx="14" fill="#f4f7fd"/>
+<text x="350" y="346" font-size="13" fill="#4B67B4" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">G3 · ensure() · lazy client per token</text>
+<text x="350" y="366" font-size="12" fill="#2f3750" font-family="'Consolas','Cascadia Mono',monospace">initialize + tools/list → resolver</text>
+<text x="350" y="385" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">pins | pattern · client cached per token</text>
+<text x="350" y="402" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">token changed / bootFailed → rebuild</text>
+<path d="M350 410V424" stroke="#8fa2d8" stroke-width="1.6" stroke-dasharray="5 4"/>
+<rect x="336" y="424" width="324" height="148" rx="14" fill="#ffffff" stroke="#b45309" stroke-width="1.4" stroke-dasharray="7 6"/>
+<text x="350" y="448" font-size="11.5" fill="#b45309" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">MEASURED DETOUR · setDue on project tasks</text>
+<text x="350" y="468" font-size="11.5" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">trigger: 'Expecting value: line 1 column 1'</text>
+<circle cx="392" cy="516" r="24" fill="none" stroke="#b45309" stroke-width="1.2" stroke-opacity="0.55"/>
+<path d="M397.0 492.5A24 24 0 0 1 414.3 507.0" fill="none" stroke="#b45309" stroke-width="1.8" marker-end="url(#arr-amb)"/>
+<circle cx="392" cy="492" r="9" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+<text x="392" y="496" font-size="11" fill="#b45309" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700" text-anchor="middle">1</text>
+<circle cx="416" cy="516" r="9" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+<text x="416" y="520" font-size="11" fill="#b45309" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700" text-anchor="middle">2</text>
+<circle cx="392" cy="540" r="9" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+<text x="392" y="544" font-size="11" fill="#b45309" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700" text-anchor="middle">3</text>
+<circle cx="368" cy="516" r="9" fill="#ffffff" stroke="#b45309" stroke-width="1.4"/>
+<text x="368" y="520" font-size="11" fill="#b45309" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700" text-anchor="middle">4</text>
+<text x="444" y="500" font-size="11.5" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">update the project task</text>
+<text x="444" y="518" font-size="11.5" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">move → inbox</text>
+<text x="444" y="536" font-size="11.5" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">update the due date</text>
+<text x="444" y="554" font-size="11.5" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">move back (finally)</text>
+<text x="724" y="116" font-size="12" fill="#8a93a8" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700" letter-spacing="1.5">WIRE</text>
+<rect x="724" y="126" width="328" height="174" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="742" y="152" font-size="13" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">MCP client · streamable-HTTP</text>
+<text x="742" y="172" font-size="11.5" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace">tools/call → POST JSON-RPC</text>
+<text x="742" y="194" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">initialize → session id + protocol version</text>
+<text x="742" y="214" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">tools/list → raw tool names</text>
+<text x="742" y="234" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">429 → Retry-After ×1</text>
+<text x="742" y="254" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">isError → throw</text>
+<text x="742" y="274" font-size="11.5" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">timeout: toolCallTimeoutMs</text>
+<rect x="724" y="310" width="328" height="58" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="742" y="338" font-size="13.5" fill="#4B67B4" font-family="'Consolas','Cascadia Mono',monospace" font-weight="700">https://mcp.dida365.com</text>
+<text x="742" y="358" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">official TickTick MCP · tools/call</text>
+<rect x="724" y="378" width="328" height="72" rx="18" fill="#ffffff" stroke="#d6dded" stroke-width="1" filter="url(#soft)"/>
+<text x="742" y="402" font-size="13" fill="#1b2233" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">your TickTick account</text>
+<text x="742" y="422" font-size="12" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">phone · desktop · web sync</text>
+<text x="742" y="442" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">reads = current cloud state</text>
+<rect x="724" y="460" width="328" height="126" rx="18" fill="#ffffff" stroke="#8fa2d8" stroke-width="1.4" stroke-dasharray="7 6"/>
+<text x="742" y="486" font-size="12" fill="#4B67B4" font-family="'Microsoft YaHei','Segoe UI',sans-serif" font-weight="700">PROBE · test connection</text>
+<text x="742" y="508" font-size="11.5" fill="#2f3750" font-family="'Consolas','Cascadia Mono',monospace">throwaway client · initialize + listTools</text>
+<text x="742" y="530" font-size="12" fill="#5a6275" font-family="'Consolas','Cascadia Mono',monospace">→ { ok, toolCount, error }</text>
+<text x="742" y="552" font-size="12" fill="#2f3750" font-family="'Microsoft YaHei','Segoe UI',sans-serif">feeds the settings card's Test connection</text>
+<text x="742" y="574" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">the cached bridge client stays untouched</text>
+<path d="M676 236H720" stroke="#4B67B4" stroke-width="2.4" marker-end="url(#arr-acc)"/>
+<path d="M724 282H680" stroke="#b45309" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arr-amb)"/>
+<text x="690" y="275" font-size="11" fill="#b45309" font-family="'Consolas','Cascadia Mono',monospace" text-anchor="middle">401</text>
+<path d="M888 300V306" stroke="#4B67B4" stroke-width="2.2" marker-end="url(#arr-acc)"/>
+<path d="M888 368V374" stroke="#4B67B4" stroke-width="2.2" marker-end="url(#arr-acc)"/>
+<line x1="48" y1="598" x2="1052" y2="598" stroke="#d6dded"/>
+<text x="48" y="620" font-size="12" fill="#5a6275" font-family="'Microsoft YaHei','Segoe UI',sans-serif">results: status {configured, connected, lastError} · tasks {tasks[], warnings[]} · add {task, verifyWarning} · ok {ok}</text>
+<text x="48" y="640" font-size="12" fill="#8a93a8" font-family="'Microsoft YaHei','Segoe UI',sans-serif">tasks(): projects[] → one tools/call per list → merge · an unreadable list is skipped into warnings[] · no local task store</text>
+</svg>

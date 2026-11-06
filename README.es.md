@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-dark.svg">
-  <img src="docs/assets/dsh-dida-flow-light.svg" width="100%" alt="Arquitectura de dsh-dida: el panel ticktick de la cabecera de sesión y las herramientas ticktick_* alimentan TicktickService, que llama al endpoint MCP oficial de TickTick mediante un cliente MCP mínimo; la página de configuración escribe la fila de perfil ticktick">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-hero-en-dark.webp">
+  <img src="docs/assets/dsh-dida-hero-en-light.webp" width="100%" alt="Banner de dsh-dida: la acción TickTick de la cabecera de sesión abre el panel de tareas (filtro por lista, vistas pendientes/completadas, búsqueda, alta rápida con fecha, chips de vencimiento y de lista, borrado), junto a las once herramientas ticktick_* y la llamada tools/call a mcp.dida365.com">
 </picture>
 
 # dsh-dida
@@ -36,6 +36,15 @@ dsh plugin --profile <name> add dsh-dida
 ## Qué es
 
 `dsh-dida` lleva TickTick / Dida365 a DeepSeek Harness: la cabecera de sesión gana un panel `ticktick` para filtrar por lista, añadir rápido, completar, borrar con confirmación, fijar o limpiar fechas límite y reordenar arrastrando; sin token configurado, el panel ofrece la configuración en un solo paso. El modelo recibe once herramientas `ticktick_*` para listas, alta/edición/borrado, fechas, orden, completadas, búsqueda y alta por lotes, además de una tarjeta de configuración en la página Plugins. Toda lectura y escritura pasa por el endpoint MCP oficial de TickTick y aterriza en tu cuenta de TickTick en la nube, así que móvil, escritorio y web la ven: el plugin no guarda ninguna base de tareas local.
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="Estructura de dsh-dida: el panel de la cabecera, las once herramientas y la tarjeta de configuración que escribe la fila de perfil confluyen en las tres puertas de TicktickService (ids protegidos, resolución del token por petición, arranque perezoso del cliente); un solo cable llega a mcp.dida365.com y a tu cuenta en la nube, con el anillo de rodeo de setDue y el bucle de reinicio por 401">
+</picture>
+
+</div>
 
 ## Instalación en tres pasos
 
@@ -346,7 +355,7 @@ pnpm run check:readmes                             # consistencia de los README 
 pnpm pack                                          # el tarball publicado
 ```
 
-La salida de build vive en `lib/`: `lib/index.js`, `lib/typert.host.js`, `lib/client.js` y `lib/types/`. Las imágenes del README se generan programáticamente con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) y se pueden reejecutar sin riesgo: `python scripts/gen-readme-assets.py`.
+La salida de build vive en `lib/`: `lib/index.js`, `lib/typert.host.js`, `lib/client.js` y `lib/types/`. Las imágenes del README se generan programáticamente con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Pillow para el banner, SVG escrito a mano para el diagrama) y se pueden reejecutar sin riesgo: `python scripts/gen-readme-assets.py` escribe `docs/assets/dsh-dida-hero-{zh,en}-{light,dark}.webp` y `docs/assets/dsh-dida-flow-v5-{light,dark}.svg` (banner localizado, diagrama solo con tokens compartido por los cinco idiomas).
 
 ### Verificar contra el endpoint real
 

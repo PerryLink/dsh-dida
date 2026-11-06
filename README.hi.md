@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-dark.svg">
-  <img src="docs/assets/dsh-dida-flow-light.svg" width="100%" alt="dsh-dida आर्किटेक्चर: सत्र-हेडर का ticktick पैनल और ticktick_* टूल TicktickService में जाते हैं, जो एक न्यूनतम MCP क्लाइंट से आधिकारिक TickTick MCP एंडपॉइंट कॉल करता है; कॉन्फ़िगरेशन पृष्ठ ticktick प्रोफ़ाइल पंक्ति लिखता है">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-hero-en-dark.webp">
+  <img src="docs/assets/dsh-dida-hero-en-light.webp" width="100%" alt="dsh-dida बैनर: सत्र-हेडर की TickTick क्रिया कार्य पैनल खोलती है (सूची फ़िल्टर, अपूर्ण/पूर्ण दृश्य, खोज, तिथि सहित त्वरित जोड़, नियत-तिथि और सूची चिप, हटाना), साथ में ग्यारह ticktick_* टूल और mcp.dida365.com तक tools/call">
 </picture>
 
 # dsh-dida
@@ -36,6 +36,15 @@ dsh plugin --profile <name> add dsh-dida
 ## यह क्या है
 
 `dsh-dida` TickTick / Dida365 को DeepSeek Harness में लाता है: सत्र हेडर में एक `ticktick` पैनल जुड़ता है जिससे सूची के अनुसार फ़िल्टर, त्वरित जोड़, पूर्ण करना, पुष्टि के साथ हटाना, नियत तिथि सेट/साफ़ करना और ड्रैग पुनःक्रम किया जा सकता है; टोकन न हो तो पैनल एक-चरणीय सेटअप देता है। मॉडल को सूचियाँ, कार्य CRUD, नियत तिथियाँ, क्रम, पूर्ण कार्य, खोज और बैच जोड़ के लिए ग्यारह `ticktick_*` टूल मिलते हैं, साथ में प्लगइन पृष्ठ पर कॉन्फ़िगरेशन कार्ड। हर पढ़ना-लिखना आधिकारिक TickTick MCP एंडपॉइंट से होकर आपके TickTick क्लाउड खाते में जाता है, इसलिए फ़ोन/डेस्कटॉप/वेब ऐप उसे देखते हैं — प्लगइन अपना कोई स्थानीय टास्क स्टोर नहीं रखता।
+
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-dida-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="dsh-dida संरचना: सत्र-हेडर पैनल, ग्यारह टूल और profile पंक्ति लिखने वाला कॉन्फ़िगरेशन कार्ड TicktickService के तीन गेटों (संरक्षित id, प्रति-अनुरोध टोकन रिज़ॉल्व, लेज़ी क्लाइंट बूटस्ट्रैप) में मिलते हैं; एक ही तार mcp.dida365.com और आपके क्लाउड खाते तक जाता है, साथ में setDue का डिटूर रिंग और 401 रीसेट लूप">
+</picture>
+
+</div>
 
 ## तीन चरणों में शुरुआत
 
@@ -346,7 +355,7 @@ pnpm run check:readmes                             # पाँच-भाषा R
 pnpm pack                                          # प्रकाशित tarball
 ```
 
-build आउटपुट `lib/` में है: `lib/index.js`, `lib/typert.host.js`, `lib/client.js` और `lib/types/`। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप में बनती हैं और सुरक्षित रूप से दोबारा चलाई जा सकती हैं: `python scripts/gen-readme-assets.py`।
+build आउटपुट `lib/` में है: `lib/index.js`, `lib/typert.host.js`, `lib/client.js` और `lib/types/`। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (hero के लिए Pillow, संरचना चित्र के लिए हाथ से लिखा SVG) से प्रोग्रामेटिक रूप में बनती हैं और सुरक्षित रूप से दोबारा चलाई जा सकती हैं: `python scripts/gen-readme-assets.py` `docs/assets/dsh-dida-hero-{zh,en}-{light,dark}.webp` और `docs/assets/dsh-dida-flow-v5-{light,dark}.svg` लिखता है (hero स्थानीयकृत, संरचना चित्र केवल कमांड टोकन, पाँचों भाषाओं में साझा)।
 
 ### लाइव एंडपॉइंट के विरुद्ध सत्यापन
 
