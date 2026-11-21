@@ -44,7 +44,7 @@ dsh plugin --profile <name> add dsh-dida
   <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="dsh-dida संरचना: सत्र-हेडर पैनल, ग्यारह टूल और profile पंक्ति लिखने वाला कॉन्फ़िगरेशन कार्ड TicktickService के तीन गेटों (संरक्षित id, प्रति-अनुरोध टोकन रिज़ॉल्व, लेज़ी क्लाइंट बूटस्ट्रैप) में मिलते हैं; एक ही तार mcp.dida365.com और आपके क्लाउड खाते तक जाता है, साथ में setDue का डिटूर रिंग और 401 रीसेट लूप">
 </picture>
 
-![dsh-dida का असली टर्मिनल रन](docs/assets/dsh-ticktick-demo.gif)
+![dsh-dida का असली टर्मिनल रन](docs/assets/dsh-dida-demo.gif)
 
 *इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
 

@@ -44,7 +44,7 @@ dsh plugin --profile <name> add dsh-dida
   <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="Estructura de dsh-dida: el panel de la cabecera, las once herramientas y la tarjeta de configuración que escribe la fila de perfil confluyen en las tres puertas de TicktickService (ids protegidos, resolución del token por petición, arranque perezoso del cliente); un solo cable llega a mcp.dida365.com y a tu cuenta en la nube, con el anillo de rodeo de setDue y el bucle de reinicio por 401">
 </picture>
 
-![dsh-dida: ejecución real de terminal](docs/assets/dsh-ticktick-demo.gif)
+![dsh-dida: ejecución real de terminal](docs/assets/dsh-dida-demo.gif)
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
 

@@ -35,7 +35,7 @@ dsh plugin --profile <name> add dsh-dida
 
 ## 它是什么
 
-![dsh-dida 真实终端运行](docs/assets/dsh-ticktick-demo.gif)
+![dsh-dida 真实终端运行](docs/assets/dsh-dida-demo.gif)
 
 *本仓库一次真实运行的动图回放。*
 

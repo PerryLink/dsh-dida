@@ -150,7 +150,7 @@ agent tools ─── ctx.tools (ticktick_*) ──▶ the same service
 
 ### Examples
 
-![dsh-dida: real terminal run](docs/assets/dsh-ticktick-demo.gif)
+![dsh-dida: real terminal run](docs/assets/dsh-dida-demo.gif)
 
 *Animated replay of a real run recorded in this repository.*
 
