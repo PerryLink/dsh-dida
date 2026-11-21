@@ -35,6 +35,10 @@ dsh plugin --profile <name> add dsh-dida
 
 ## 它是什么
 
+![dsh-dida 真实终端运行](docs/assets/dsh-ticktick-demo.gif)
+
+*本仓库一次真实运行的动图回放。*
+
 `dsh-dida` 把滴答清单（TickTick / Dida365）接进 DeepSeek Harness：会话头部多出一个 `ticktick` 面板，可以按清单过滤、快速添加、勾选完成、确认删除、设置/清除截止日期、拖拽排序；没配令牌时还能在面板里一步粘贴保存。模型侧拿到 11 个 `ticktick_*` 工具，能查清单、加任务、改期、搜索、批量添加；插件页上还有一张配置卡。所有读写都走官方滴答 MCP 端点，落到你的滴答云端账号，手机/桌面/网页版同步可见——插件自己不建本地任务库。
 
 <div align="center">

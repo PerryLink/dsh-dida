@@ -44,6 +44,11 @@ O `dsh-dida` traz o TickTick / Dida365 para o DeepSeek Harness: a cabeceira da s
   <img src="docs/assets/dsh-dida-flow-v5-light.svg" width="100%" alt="Estrutura do dsh-dida: o painel da cabeceira, as onze ferramentas e o cartão de configuração que grava a linha de perfil convergem nas três portas do TicktickService (ids protegidos, resolução do token por requisição, inicialização preguiçosa do cliente); um único fio chega a mcp.dida365.com e à sua conta na nuvem, com o anel de desvio do setDue e o laço de reinício por 401">
 </picture>
 
+![dsh-dida: execução real de terminal](docs/assets/dsh-ticktick-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 </div>
 
 ## Instalação em três passos

@@ -150,6 +150,10 @@ agent tools ─── ctx.tools (ticktick_*) ──▶ the same service
 
 ### Examples
 
+![dsh-dida: real terminal run](docs/assets/dsh-ticktick-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 These are the plugin's real entry points; install once, then call one.
 
 #### Detailed example
