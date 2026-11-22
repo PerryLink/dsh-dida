@@ -11,6 +11,8 @@
 
 面向 DeepSeek Harness 的滴答清单（TickTick / Dida365）任务桥：会话头部任务面板、11 个 `ticktick_*` 工具、插件页配置卡与类型化 Remote 服务，全部走官方滴答 MCP 端点。
 
+最近一次核验：DeepSeek Harness `dsh-v0.2.3-alpha.1`（2026-11-22）。
+
 [安装](#三步上手) · [配置](#配置) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -332,7 +334,7 @@ profile patch 覆盖示例：
 
 | 维度 | 状态 |
 |---|---|
-| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1**（GitHub tag）。npm 依赖线钉在 `@deepseek-ai/dsh` **0.2.1-alpha.1**（peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`）。已对照 dsh-v0.2.1-alpha.1 checkout 核验（完整门禁链 + profile 安装冒烟）。 |
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1**（GitHub tag）。npm 依赖线钉在 `@deepseek-ai/dsh` **0.2.1-alpha.1**（peers `>=0.1.2-rc.1 <0.2.1 \|\| >=0.1.5-alpha.1 <0.2.1 \|\| >=0.1.6-0 <0.2.1 \|\| >=0.1.7-0 <0.2.1 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`）。已对照 dsh-v0.2.1-alpha.1 checkout 核验（完整门禁链 + profile 安装冒烟）。 |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | 平台 | 任何 DSH 可运行处；任务面板需要 Web 客户端（`dsh web`） |
 | 模型 | 支持工具调用的文本模型即可；无需额外模型能力 |

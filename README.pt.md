@@ -11,6 +11,8 @@
 
 Uma ponte de tarefas TickTick / Dida365 para o DeepSeek Harness: painel de tarefas na cabeceira da sessão, onze ferramentas `ticktick_*`, um cartão de configuração na página Plugins e um serviço Remote tipado — tudo sobre o endpoint MCP oficial do TickTick.
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalação](#instalação-em-três-passos) · [Configuração](#configuração) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -47,7 +49,6 @@ O `dsh-dida` traz o TickTick / Dida365 para o DeepSeek Harness: a cabeceira da s
 ![dsh-dida: execução real de terminal](docs/assets/dsh-dida-demo.gif)
 
 *Repetição animada de uma execução real registrada neste repositório.*
-
 
 </div>
 
@@ -333,7 +334,7 @@ Por isso ele não disputa nomes, rotas ou estado global com ferramentas embutida
 
 | Superfície | Estado |
 |---|---|
-| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (tag do GitHub). Linha npm fixada em `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verificado contra o checkout dsh-v0.2.1-alpha.1 (cadeia completa de gates + smoke de instalação de perfil). |
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (tag do GitHub). Linha npm fixada em `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.1 \|\| >=0.1.5-alpha.1 <0.2.1 \|\| >=0.1.6-0 <0.2.1 \|\| >=0.1.7-0 <0.2.1 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verificado contra o checkout dsh-v0.2.1-alpha.1 (cadeia completa de gates + smoke de instalação de perfil). |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Plataformas | Onde o DSH rodar; o painel de tarefas precisa de um cliente web (`dsh web`) |
 | Modelo | Qualquer modelo de texto com tool calling; nenhuma capacidade extra necessária |

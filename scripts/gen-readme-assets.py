@@ -538,7 +538,7 @@ def flow_svg(theme: str) -> str:
 
     # header ----------------------------------------------------------------
     add(t(48, 54, "dsh-dida · one guarded wire", 22, c["text"], weight=700))
-    add(t(1052, 54, "v0.2.0 · Apache-2.0", 13, c["faint"], anchor="end", mono=True))
+    add(t(1052, 54, "v0.2.1 · Apache-2.0", 13, c["faint"], anchor="end", mono=True))
     add(t(48, 82, "three surfaces → one Remote namespace → one MCP wire; the "
                   "token is re-read per request, a 401 drops the client",
           13, c["sub"]))

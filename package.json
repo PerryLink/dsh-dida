@@ -1,6 +1,6 @@
 {
   "name": "dsh-dida",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "TickTick (Dida365) task bridge for DeepSeek Harness: a Session-header task panel (list filter, quick add, complete, delete, due dates, drag reorder) over the official TickTick MCP endpoint, a Ticktick Remote service, curated agent tools, and a plugin settings card.",
   "repository": {
     "type": "git",
@@ -169,20 +169,20 @@
   ],
   "engines": {
     "node": "^22.19.0 || >=24.0.0",
-    "dsh": ">=0.2.1-0 <0.3.0"
+    "dsh": ">=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0"
   },
   "packageManager": "pnpm@11.7.0",
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.5-alpha.1",
-    "@deepseek-ai/dsh-tools": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-typert-protocol": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-settings": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-system-prompt": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
+    "@deepseek-ai/dsh-tools": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-typert-protocol": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-settings": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-system-prompt": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
     "@deepseek-ai/schemastery": "^3.18.5-alpha.1",
-    "@deepseek-ai/dsh-api-remotes": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-client-locale": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-client-ui-conversation": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0",
-    "@deepseek-ai/dsh-client-ui-primitives": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0"
+    "@deepseek-ai/dsh-api-remotes": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-client-locale": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-client-ui-conversation": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0",
+    "@deepseek-ai/dsh-client-ui-primitives": ">=0.1.7-alpha.1 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0 || >=0.2.3-0 <0.3.0-0"
   },
   "peerDependenciesMeta": {
     "@deepseek-ai/dsh-api-remotes": {

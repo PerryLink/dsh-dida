@@ -11,6 +11,8 @@
 
 DeepSeek Harness के लिए TickTick / Dida365 टास्क ब्रिज: सत्र-हेडर टास्क पैनल, ग्यारह `ticktick_*` टूल, प्लगइन पृष्ठ पर कॉन्फ़िगरेशन कार्ड और टाइप्ड Remote सेवा — सब आधिकारिक TickTick MCP एंडपॉइंट पर।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [इंस्टॉल](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -47,7 +49,6 @@ dsh plugin --profile <name> add dsh-dida
 ![dsh-dida का असली टर्मिनल रन](docs/assets/dsh-dida-demo.gif)
 
 *इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
-
 
 </div>
 
@@ -333,7 +334,7 @@ Error: task t-guarded is protected
 
 | सतह | स्थिति |
 |---|---|
-| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (GitHub tag)। npm डिपेंडेंसी लाइन `@deepseek-ai/dsh` **0.2.1-alpha.1** पर पिन (peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`)। dsh-v0.2.1-alpha.1 checkout के विरुद्ध सत्यापित (पूर्ण gate chain + profile install smoke)। |
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (GitHub tag)। npm डिपेंडेंसी लाइन `@deepseek-ai/dsh` **0.2.1-alpha.1** पर पिन (peers `>=0.1.2-rc.1 <0.2.1 \|\| >=0.1.5-alpha.1 <0.2.1 \|\| >=0.1.6-0 <0.2.1 \|\| >=0.1.7-0 <0.2.1 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`)। dsh-v0.2.1-alpha.1 checkout के विरुद्ध सत्यापित (पूर्ण gate chain + profile install smoke)। |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | प्लेटफ़ॉर्म | जहाँ DSH चले; टास्क पैनल के लिए वेब क्लाइंट (`dsh web`) चाहिए |
 | मॉडल | tool calling वाला कोई भी टेक्स्ट मॉडल; कोई अतिरिक्त क्षमता आवश्यक नहीं |

@@ -11,6 +11,8 @@
 
 A TickTick / Dida365 task bridge for DeepSeek Harness: a Session-header task panel, eleven `ticktick_*` tools, a configuration card on the Plugins page, and a typed Remote service — all over the official TickTick MCP endpoint.
 
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Install](#three-step-setup) · [Configuration](#configuration) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -332,7 +334,7 @@ So it does not contend with built-in tools or other plugins for names, routes, o
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (GitHub tag). npm dependency line pinned to `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verified against the dsh-v0.2.1-alpha.1 checkout (full gate chain + profile install smoke). |
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (GitHub tag). npm dependency line pinned to `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.1 \|\| >=0.1.5-alpha.1 <0.2.1 \|\| >=0.1.6-0 <0.2.1 \|\| >=0.1.7-0 <0.2.1 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verified against the dsh-v0.2.1-alpha.1 checkout (full gate chain + profile install smoke). |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Platforms | Anywhere DSH runs; the task panel needs a web client (`dsh web`) |
 | Model | Any text model with tool calling; no extra model capability required |

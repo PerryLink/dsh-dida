@@ -11,6 +11,8 @@
 
 Un puente de tareas TickTick / Dida365 para DeepSeek Harness: un panel de tareas en la cabecera de sesión, once herramientas `ticktick_*`, una tarjeta de configuración en la página Plugins y un servicio Remote tipado, todo sobre el endpoint MCP oficial de TickTick.
 
+Última verificación: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalación](#instalación-en-tres-pasos) · [Configuración](#configuración) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -47,7 +49,6 @@ dsh plugin --profile <name> add dsh-dida
 ![dsh-dida: ejecución real de terminal](docs/assets/dsh-dida-demo.gif)
 
 *Repetición animada de una ejecución real registrada en este repositorio.*
-
 
 </div>
 
@@ -333,7 +334,7 @@ Por eso no compite con herramientas incluidas ni con otros plugins por nombres, 
 
 | Superficie | Estado |
 |---|---|
-| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (tag de GitHub). Línea npm fijada en `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0 \|\| >=0.2.0-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verificado contra el checkout dsh-v0.2.1-alpha.1 (cadena completa de gates + smoke de instalación de perfil). |
+| Harness | DeepSeek Harness **dsh-v0.2.1-alpha.1** (tag de GitHub). Línea npm fijada en `@deepseek-ai/dsh` **0.2.1-alpha.1** (peers `>=0.1.2-rc.1 <0.2.1 \|\| >=0.1.5-alpha.1 <0.2.1 \|\| >=0.1.6-0 <0.2.1 \|\| >=0.1.7-0 <0.2.1 \|\| >=0.2.1-0 <0.3.0 \|\| >=0.2.1-0 <0.3.0`). Verificado contra el checkout dsh-v0.2.1-alpha.1 (cadena completa de gates + smoke de instalación de perfil). |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Plataformas | Donde corra DSH; el panel de tareas necesita un cliente web (`dsh web`) |
 | Modelo | Cualquier modelo de texto con tool calling; no requiere capacidades extra |
